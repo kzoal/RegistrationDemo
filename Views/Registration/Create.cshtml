@@ -1,0 +1,100 @@
+﻿@model RegistrationDemo.Data.Registration
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <hr>
+    @using (Ajax.BeginForm("Save", "Registration", new AjaxOptions { HttpMethod = "POST" }, new { @id = "frmRegister" }))
+    {
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">Enter registration details</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="Name" class="form-label">Name</label>
+                                    <input type="text" id="Name" class="form-control" required minlength="10" maxlength="100" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="Address" class="form-label">Address</label>
+                                    <textarea id="Address" class="form-control" maxlength="2500" rows="2" cols="30"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="Email" class="form-label">Email</label>
+                                    <input type="email" id="Email" class="form-control" maxlength="100" required email />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="Phone" class="form-label">Phone</label>
+                                    <input type="tel" id="Phone" class="form-control" maxlength="30" required phoneUS />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="Username" class="form-label">Username</label>
+                                    <input type="text" id="Username" class="form-control" required minlength="8" maxlength="100" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="pwd" class="form-label">Password</label>
+                                    <input type="password" id="pwd" class="form-control" onfocusout="validatePassword();" minlength="8" maxlength="100" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="confirmpwd" class="form-label">Confirm password</label>
+                                    <input type="password" id="confirmpwd" class="form-control" onfocusout="validatePassword();" minlength="8" maxlength="100" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div style="margin-top: 7px; display:none;"
+                                     id="passwordDifferenceMessage"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <div class="card-footer text-body-secondary">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="button" id="btnPopulate" value="Populate Data Using API" class="btn btn-primary" onclick="loadDataFromAPI()" />
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <input type="button" id="btnSave" value="Save" class="btn btn-secondary" onclick="saveRegistration()" disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

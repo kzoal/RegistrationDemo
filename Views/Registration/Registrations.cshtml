@@ -1,0 +1,115 @@
+﻿@model IEnumerable<RegistrationDemo.Data.Registration>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registrations</title>
+</head>
+<body>
+    <div class="container">
+        <br />
+        <div class="row">
+            <div class="col-md-12 text-center text-capitalize">
+                <h1>Registrations</h1>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <table class="display compact" style="width:100%" id="Registrations">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="dt-head-center">
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th class="dt-head-center">
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th class="dt-head-center">
+                                @Html.DisplayNameFor(model => model.Phone)
+                            </th>
+                            <th class="dt-head-center">
+                                @Html.DisplayNameFor(model => model.Address)
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="dt-body-center">
+                                <input type="checkbox" id="chkRegistration" onchange="allowDelete();" name=@item.Id>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                <input type="button" value="View" class="btn btn-primary btn-sm " onclick="viewRegistration('View Registration', '@item.Id', 0)" />
+                            </td>
+                            <td>
+                                <input type="button" value="Edit" class="btn btn-secondary btn-sm " onclick="viewRegistration('Update Registration', '@item.Id', 1)" />
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-8 col-md-offset-4">
+                <input type="button" value="Delete Selected" id="deleteRegistration" class="btn btn-secondary btn-sm" onclick="openConfirmPwdBeforeDelete();" disabled />
+            </div>
+        </div>
+        <div id="registrationPopup" style="display:none"></div>
+
+        <div class="modal fade" id="confirmPwdBeforeDelete">
+            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">Enter your password before deleting</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    @Html.Hidden(System.Web.HttpContext.Current.User.Identity.Name)
+                                    <input type="hidden" id="username" value=@System.Web.HttpContext.Current.User.Identity.Name />
+                                    <input type="password" id="pwd" class="form-control" autocomplete="off" required maxlength="100"
+                                           placeholder="Enter password" onchange="enableButton();" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <input type="button" value="Confirm" id="confirmPwd" disabled class="btn btn-primary btn-sm" onclick="verifyPassword();" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    <script type="text/javascript">
+        $('#Registrations').DataTable();
+    </script>
+}
