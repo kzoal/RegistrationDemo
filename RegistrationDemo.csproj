@@ -201,6 +201,7 @@
     <Compile Include="Repository\IUser.cs" />
     <Compile Include="Repository\RegistrationRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Service\PasswordService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -318,12 +319,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RegistrationDemoService\RegistrationDemoService.csproj">
-      <Project>{6a13ca9f-b7a0-40d6-8fe2-92d2a1d9df22}</Project>
-      <Name>RegistrationDemoService</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

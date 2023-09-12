@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 using RegistrationDemo.Data;
 using RegistrationDemo.Repository;
-using RegistrationDemoService;
+using RegistrationDemo.Service;
 
 namespace RegistrationDemo.Controllers
 {
